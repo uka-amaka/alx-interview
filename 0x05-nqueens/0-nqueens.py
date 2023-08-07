@@ -1,18 +1,23 @@
+#!/usr/bin/env python3
+
 import sys
 
 def is_safe(board, row, col, N):
     # Check if a queen can be placed in the given cell without attacking others
     for i in range(row):
-        if board[i] == col or \
-           abs(board[i] - col) == abs(i - row):
+        if board[i] == col or abs(board[i] - col) == abs(i - row):
             return False
     return True
 
 def print_solution(board, N):
     # Print the solution in the specified format
     for i in range(N):
-        line = ["Q" if j == board[i] else "." for j in range(N)]
-        print(" ".join(line))
+        for j in range(N):
+            if j == board[i]:
+                print("Q", end=" ")
+            else:
+                print("0", end=" ")
+        print()
     print()
 
 def solve_nqueens(N):
@@ -38,7 +43,7 @@ def solve_nqueens(N):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: nqueens N")
+        print("Usage: ./0-nqueens.py N")
         sys.exit(1)
 
     try:
